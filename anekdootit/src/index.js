@@ -18,11 +18,12 @@ const Anecdote = ({ text, votes }) => {
   )
 }
 
+let mostVotes = 0
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
 
-  let mostVotes = 0
 
   const selectRandom = () => {
     let number = Math.floor(Math.random() * anecdotes.length)
@@ -32,6 +33,10 @@ const App = (props) => {
   const voteAnecdote = () => {
     const copy = [...points]
     copy[selected] += 1
+    debugger
+    if (copy[selected] > copy[mostVotes]) {
+      mostVotes = selected
+    }
     setPoints(copy)
   }
 
