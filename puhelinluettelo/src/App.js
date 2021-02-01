@@ -114,6 +114,9 @@ const App = () => {
               setNotificationMessage(null)
             }, 5000)
           })
+          .catch(error => {
+            setNotificationMessage(error.response.data.error)
+          })
     } else {
       if (window.confirm(`${newName} is already on list. Replace old number with a new one?`)) {
         updateNumber()
