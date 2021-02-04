@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
+import { newMessage, removeMessage } from '../reducers/messageReducer'
+
 
 const Anecdote = ({ anecdote, handleVote }) => {
   return (
@@ -10,25 +12,29 @@ const Anecdote = ({ anecdote, handleVote }) => {
           </div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => handleVote(anecdote.id)}>vote</button>
+            <button onClick={() => handleVote(anecdote)}>vote</button>
           </div>
     </div>
   )
 }
 
 const Anecdotes = () => {
-  const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => state.anecdotes)
   const dispatch = useDispatch()
 
-  const handleVote = (id) => {
-    console.log('vote', id)
-    dispatch(voteAnecdote(id))
+  const handleVote = (anecdote) => {
+    console.log('vote', anecdote.id)
+    dispatch(voteAnecdote(anecdote.id))
+    dispatch(newMessage(`Voted '${anecdote.content}'`))
+    setTimeout(() => dispatch(removeMessage()), 5000)
   }
 
   const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes)
-
+  const filter = useSelector(state => state.filter)
+  const filteredAnecdotes = sortedAnecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
+  
   return (
-    sortedAnecdotes.map(anecdote => <Anecdote key={anecdote.id} anecdote={anecdote} handleVote={handleVote} />)
+    filteredAnecdotes.map(anecdote => <Anecdote key={anecdote.id} anecdote={anecdote} handleVote={handleVote} />)
     
   )
 }
