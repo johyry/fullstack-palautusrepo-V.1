@@ -8,12 +8,18 @@ const getAll = async () => {
 }
 
 const create = async (anecdote) => {
-  console.log(anecdote)
   const response = await axios.post(baseUrl, anecdote)
+  return response.data
+}
+
+const vote = async (anecdote) => {
+  console.log("service check", anecdote)
+  const response = await axios.put(`${baseUrl}/${anecdote.id}`, anecdote)
   return response.data
 }
 
 export default {
   getAll,
-  create
+  create,
+  vote
 }
