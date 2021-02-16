@@ -1,4 +1,3 @@
-
 const messageReducer = (state = '', action) => {
   console.log('state now: ', state)
   console.log('action', action)
@@ -13,32 +12,27 @@ const messageReducer = (state = '', action) => {
   }
 }
 
-let nextNotificationId = 0
-
 export const newMessage = ( message, displayTime ) => {
   console.log(message, displayTime)
   const time = displayTime * 1000
   console.log(time)
-  const id = nextNotificationId++
 
   return dispatch => {
-    dispatch(displayMessage(message, id))
-    setTimeout(() => dispatch(removeMessage(id)), time)
+    dispatch(displayMessage(message))
+    setTimeout(() => dispatch(removeMessage()), time)
   }
 }
 
-export const displayMessage = (message, id) => {
+export const displayMessage = (message) => {
   return {
     type: 'DISPLAYMESSAGE',
-    data: message,
-    id
+    data: message
   }
 }
 
-export const removeMessage = (id) => {
+export const removeMessage = () => {
   return {
     type: 'REMOVEMESSAGE',
-    id
   }
 }
 

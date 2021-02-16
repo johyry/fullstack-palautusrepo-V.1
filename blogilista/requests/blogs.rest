@@ -16,7 +16,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJldHVwZWtrYSIsImlkIjoiNjAxN2JlOGUyNjBjMTgyMDAxODA5OGRhIiwiaWF0IjoxNjEyMTY4ODY2fQ.hScDr6oIKKRnXNLYHMrhiSRT8JQKkrrwxXXVmP64fhE
 
 { 
-    "title": "ADDEDUSER-TEST-LOL", 
+    "title": "BLOG TEST FOR COMMENT", 
     "url": "jeejee.com", 
     "userId": "5c7f8eb616ec9861d530d938"
 }
@@ -24,8 +24,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJld
 
 ### 
 
-DELETE http://localhost:3001/api/blogs/6017c184f6c7be225573f29e
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYwMTdiZTAyMjYwYzE4MjAwMTgwOThkOCIsImlhdCI6MTYxMjE2OTM4Mn0.pvy4XmSAhZGkI3X71Ce6fM9Dc-adeKg6cj33TL-gK7Q
+DELETE http://localhost:3001/api/blogs/602a4ecf7c3d9b4b4594868a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJldHVwZWtrYSIsImlkIjoiNjAxN2JlOGUyNjBjMTgyMDAxODA5OGRhIiwiaWF0IjoxNjEyMTY4ODY2fQ.hScDr6oIKKRnXNLYHMrhiSRT8JQKkrrwxXXVmP64fhE
 
 ###
 
@@ -35,4 +35,12 @@ Content-Type: application/json
 {
     "title": "thisisamodifiedblog",
     "likes": 100
+}
+
+###
+POST http://localhost:3001/api/blogs/602a4f0b4bfa5b4c23820f66/comments
+Content-type: application/json
+
+{
+    "comment": "This is a new comment for testing"
 }
